@@ -1,0 +1,23 @@
+{% extends 'layouts/default.html' %}
+
+{% block content %}
+    <div id="wrapper">
+        <header>
+            <h1>NX.ie <span>|</span> url shortener</h1>
+        </header>
+        <div id="form-box">
+            <form action="/add" method="POST">
+                {% csrf_token %}
+                <div id="main-options">
+                    <input type="text" name="link" placeholder="http://google.com *">
+                    <input type="submit" value="Shrink">
+                    <button><span class="arrow-down"></span></button>
+                </div>
+                <div id="extra-options">
+                    <input type="text" name="identifier" placeholder="name">
+                    <input type="text" name="extension" placeholder="extension">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
