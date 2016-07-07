@@ -3,6 +3,7 @@ from django.conf.urls import url
 from . import views
 
 app_name = 'shortener'
+
 urlpatterns = [
     url(r'^$', views.IndexView, name='index'),
     url(r'^add/?', views.AddLink, name='add_link'),
