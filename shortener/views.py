@@ -9,8 +9,11 @@ from .models import Link, Click
 from ipware.ip import get_ip
 from random import randint
 import json
-import validators
-import pprint
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+
+
+validateUrl = URLValidator()
 
 def IndexView(request):
     template_name = 'shortener/index.html'
@@ -36,7 +39,9 @@ def AddLink(request):
     ip = get_ip(request)
     resp_data = None
     
-    if not validators.url(link):
+    try:
+        validateUrl(link)
+    except ValidationError, e:
         return JsonResponse({
             'msg': 'link_validation_error'  
         })
